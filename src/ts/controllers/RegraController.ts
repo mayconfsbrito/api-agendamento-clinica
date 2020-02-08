@@ -15,3 +15,15 @@ exports.createRegra = (req: any, res: any) => {
     res.status(500);
   }
 };
+
+exports.deleteRegra = (req: any, res: any) => {
+  try {
+    const regra = new Regra(req.body);
+    console.log(regra);
+
+    res.status(200).json(regra);
+  } catch (err) {
+    console.error(err);
+    res.status(500);
+  }
+};

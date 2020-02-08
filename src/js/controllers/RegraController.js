@@ -16,3 +16,14 @@ exports.createRegra = (req, res) => {
         res.status(500);
     }
 };
+exports.deleteRegra = (req, res) => {
+    try {
+        const regra = new models_1.Regra(req.body);
+        console.log(regra);
+        res.status(200).json(regra);
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500);
+    }
+};

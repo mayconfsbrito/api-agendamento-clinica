@@ -9,5 +9,6 @@ const router = express_1.default.Router();
 router
     .route('/')
     .get(regraController.getRegras)
-    .post(regraController.createRegra);
+    .post(regraController.createRegra)
+    .delete(regraController.deleteRegra);
 module.exports = router;

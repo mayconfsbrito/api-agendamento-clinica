@@ -1,6 +1,6 @@
-import { DAO } from './index';
+import { AbstractEntity } from './AbstractEntity';
 
-export class Regra {
+export class Regra extends AbstractEntity {
   private diasSemana: Array<number>;
 
   private dia: Date;
@@ -14,6 +14,7 @@ export class Regra {
   // }
 
   constructor(regra: Regra) {
+    super();
     this.diasSemana = regra.diasSemana;
     this.dia = regra.dia;
     this.horarios = regra.horarios;
@@ -35,8 +36,4 @@ export class Regra {
   //   console.log(this.horarios);
   //   return true;
   // }
-
-  public insert(): void {
-    DAO.insert(this);
-  }
 }

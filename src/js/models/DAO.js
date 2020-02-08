@@ -8,6 +8,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
+const lodash = __importStar(require("lodash"));
 const config = require('../../../config');
 class DAO {
     static insert(obj) {
@@ -21,8 +22,17 @@ class DAO {
             data = '[]';
         return JSON.parse(data);
     }
+    static delete(obj) {
+        let data = DAO.getData();
+        data = data.filter(el => lodash.isEqual(el, obj) === false);
+        fs.writeFileSync(DAO._filePath, JSON.stringify(data));
+    }
     static dropData() {
         fs.writeFileSync(DAO._filePath, '[]');
+    }
+    static getObject(obj) {
+        const data = DAO.getData();
+        return data.find(el => lodash.isEqual(el, obj));
     }
 }
 exports.DAO = DAO;

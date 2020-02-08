@@ -5,3 +5,4 @@ function __export(m) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./RegraModel"));
 __export(require("./DAO"));
+__export(require("./AbstractEntity"));
