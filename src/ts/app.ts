@@ -5,7 +5,8 @@ const app = express();
 const config = require('../../config');
 const regraRouter = require('./routes/RegrasRoute');
 
-if (!config.isProduction) app.use(morgan('dev'));
+//if (!config.isProduction)
+app.use(morgan('dev'));
 
 app.use(express.json());
 app.use('/api/v1/regras', regraRouter);

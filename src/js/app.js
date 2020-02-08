@@ -8,8 +8,8 @@ const morgan_1 = __importDefault(require("morgan"));
 const app = express_1.default();
 const config = require('../../config');
 const regraRouter = require('./routes/RegrasRoute');
-if (!config.isProduction)
-    app.use(morgan_1.default('dev'));
+//if (!config.isProduction)
+app.use(morgan_1.default('dev'));
 app.use(express_1.default.json());
 app.use('/api/v1/regras', regraRouter);
 module.exports = app;

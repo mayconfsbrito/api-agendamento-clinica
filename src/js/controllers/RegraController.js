@@ -19,8 +19,8 @@ exports.createRegra = (req, res) => {
 exports.deleteRegra = (req, res) => {
     try {
         const regra = new models_1.Regra(req.body);
-        console.log(regra);
-        res.status(200).json(regra);
+        regra.delete();
+        res.status(200).json();
     }
     catch (err) {
         console.error(err);
