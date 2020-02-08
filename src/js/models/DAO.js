@@ -8,14 +8,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
+const config = require('../../../config');
 class DAO {
     constructor() {
-        this._filePath = `${__dirname}/data-test.json`;
+        this._filePath = `${__dirname}\\..\\..\\..\\data\\${config.dataFileName}`;
     }
-    insert(obj) { }
+    insert(obj) {
+        const data = this.getData();
+        data.push(obj);
+        fs.writeFileSync(this._filePath, JSON.stringify(data));
+    }
     getData() {
-        // const fileData = fs.createReadStream(this._filePath);
-        return JSON.parse(fs.readFileSync(this._filePath, 'utf-8'));
+        const data = fs.readFileSync(this._filePath, 'utf-8');
+        return JSON.parse(data);
     }
 }
 exports.DAO = DAO;

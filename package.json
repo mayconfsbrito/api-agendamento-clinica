@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -w -r ts-node/register test/*.ts src/models/*.ts",
+    "test": "mocha -w -r ts-node/register test/*.ts src/ts/models/*.ts",
     "build": "rm -rf js/ && tsc -w",
-    "start": "nodemon js/src/index.js",
-    "start:prod": "set node_env=production && nodemon server.js",
+    "start": "set node_env=production && nodemon src/js/index.js",
+    "start:prod": "set node_env=production && nodemon src/js/index.js",
     "tsc": "tsc -w"
   },
   "author": "Maycon Brito <mayconfsbrito@gmail.com>",
@@ -17,7 +17,11 @@
   },
   "dependencies": {
     "@types/express": "^4.17.2",
+    "@types/morgan": "^1.7.37",
+    "config": "^3.2.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "lodash": "^4.17.15",
     "typescript": "^3.7.5"
   },
   "devDependencies": {
@@ -37,6 +41,7 @@
     "eslint-plugin-react": "^7.18.3",
     "mocha": "^7.0.1",
     "mocha-cli": "^1.0.1",
+    "morgan": "^1.9.1",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "ts-node": "^8.6.2"

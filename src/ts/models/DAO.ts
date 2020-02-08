@@ -1,10 +1,8 @@
 import * as fs from 'fs';
-const config = require('../../config.env.json')[
-  process.env.NODE_ENV || 'development'
-];
+const config = require('../../../config');
 
 export class DAO {
-  private _filePath = `${__dirname}\\..\\..\\data\\${config.dataFileName}`;
+  private _filePath = `${__dirname}\\..\\..\\..\\data\\${config.dataFileName}`;
 
   public insert(obj: object): void {
     const data = this.getData();

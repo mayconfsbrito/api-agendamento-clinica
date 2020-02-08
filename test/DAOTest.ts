@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import 'mocha';
-import { DAO } from '../src/models/DAO';
+import { DAO } from '../src/ts/models/DAO';
 
 describe('DAO', () => {
   describe('#getData()', () => {
