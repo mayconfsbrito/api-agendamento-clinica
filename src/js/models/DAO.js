@@ -14,7 +14,7 @@ class DAO {
     static insert(obj) {
         const data = DAO.getData();
         data.push(obj);
-        fs.writeFileSync(DAO._filePath, JSON.stringify(data));
+        DAO._writeFile(data);
     }
     static getData() {
         let data = fs.readFileSync(DAO._filePath, 'utf-8');
@@ -24,15 +24,26 @@ class DAO {
     }
     static delete(obj) {
         let data = DAO.getData();
-        data = data.filter(el => lodash.isEqual(el, obj) === false);
-        fs.writeFileSync(DAO._filePath, JSON.stringify(data));
+        data = data.filter(el => !DAO._compareTo(obj, el));
+        DAO._writeFile(data);
     }
     static dropData() {
         fs.writeFileSync(DAO._filePath, '[]');
     }
     static getObject(obj) {
         const data = DAO.getData();
-        return data.find(el => lodash.isEqual(el, obj));
+        return data.find(el => DAO._compareTo(obj, el));
+    }
+    static _writeFile(data) {
+        fs.writeFileSync(DAO._filePath, DAO._stringfy(data));
+    }
+    static _stringfy(obj) {
+        return JSON.stringify(obj, function (k, v) {
+            return v === undefined ? null : v;
+        });
+    }
+    static _compareTo(t, o) {
+        return lodash.isEqual(DAO._stringfy(t), DAO._stringfy(o));
     }
 }
 exports.DAO = DAO;
