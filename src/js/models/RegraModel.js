@@ -2,11 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const AbstractEntity_1 = require("./AbstractEntity");
 class Regra extends AbstractEntity_1.AbstractEntity {
-    // constructor(diasSemana: Array<number>, dia: Date, horarios: Array<Date>) {
-    //   this.diasSemana = diasSemana;
-    //   this.dia = dia;
-    //   this.horarios = horarios;
-    // }
     constructor(regra) {
         super();
         this.diasSemana = regra.diasSemana;
