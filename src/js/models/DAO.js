@@ -10,17 +10,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const fs = __importStar(require("fs"));
 const config = require('../../../config');
 class DAO {
-    constructor() {
-        this._filePath = `${__dirname}\\..\\..\\..\\data\\${config.dataFileName}`;
-    }
-    insert(obj) {
-        const data = this.getData();
+    static insert(obj) {
+        const data = DAO.getData();
         data.push(obj);
-        fs.writeFileSync(this._filePath, JSON.stringify(data));
+        fs.writeFileSync(DAO._filePath, JSON.stringify(data));
     }
-    getData() {
-        const data = fs.readFileSync(this._filePath, 'utf-8');
+    static getData() {
+        let data = fs.readFileSync(DAO._filePath, 'utf-8');
+        if (data == null || data === '')
+            data = '[]';
         return JSON.parse(data);
+    }
+    static dropData() {
+        fs.writeFileSync(DAO._filePath, '[]');
     }
 }
 exports.DAO = DAO;
+DAO._filePath = `${__dirname}\\..\\..\\..\\data\\${config.dataFileName}`;

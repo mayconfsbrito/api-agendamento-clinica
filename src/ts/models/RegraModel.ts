@@ -1,18 +1,42 @@
+import { DAO } from './index';
+
 export class Regra {
-  constructor(
-    private tipoIntervalo: string,
-    private horarioInicio: Date,
-    private horarioFim: Date
-  ) {
-    this.tipoIntervalo = tipoIntervalo;
-    this.horarioInicio = horarioInicio;
-    this.horarioFim = horarioFim;
+  private diasSemana: Array<number>;
+
+  private dia: Date;
+
+  private horarios: Array<Date>;
+
+  // constructor(diasSemana: Array<number>, dia: Date, horarios: Array<Date>) {
+  //   this.diasSemana = diasSemana;
+  //   this.dia = dia;
+  //   this.horarios = horarios;
+  // }
+
+  constructor(regra: Regra) {
+    this.diasSemana = regra.diasSemana;
+    this.dia = regra.dia;
+    this.horarios = regra.horarios;
   }
 
-  public insert(regra: Regra) {
-    console.log(this.tipoIntervalo);
-    console.log(this.horarioInicio);
-    console.log(this.horarioFim);
-    return true;
+  // public insertDia(regra: Regra) {
+  //   console.log(this.dia);
+  //   console.log(this.horarios);
+  //   return true;
+  // }
+
+  // public insertSemanal(regra: Regra) {
+  //   console.log(this.diasSemana);
+  //   console.log(this.horarios);
+  //   return true;
+  // }
+
+  // public insertDiario(regra: Regra) {
+  //   console.log(this.horarios);
+  //   return true;
+  // }
+
+  public insert(): void {
+    DAO.insert(this);
   }
 }
