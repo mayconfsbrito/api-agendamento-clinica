@@ -12,7 +12,10 @@ class DateHelper {
         return DateHelper.getMomentDate(dateOne).isSameOrAfter(DateHelper.getMomentDate(dateTwo));
     }
     static parseString(date) {
-        return moment(date).format('DD-MM-YYYY');
+        if (this.getMomentDate(date).isValid()) {
+            return this.getMomentDate(date).format('DD-MM-YYYY');
+        }
+        return '';
     }
     static getDate(date) {
         return new Date(DateHelper.getMomentDate(date).toDate());
