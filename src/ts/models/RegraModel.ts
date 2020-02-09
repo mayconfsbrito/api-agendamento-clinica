@@ -1,4 +1,4 @@
-import { DAO, AbstractEntity } from './index';
+import { DAO, AbstractEntity, Horario } from './index';
 import { DateHelper } from '../utils/DateHelper';
 
 export class Regra extends AbstractEntity {
@@ -16,20 +16,19 @@ export class Regra extends AbstractEntity {
   public static getHorariosDisponiveis(
     dataInicio: string,
     dataFim: string
-  ): Array<object> {
+  ): Array<Horario> {
     const regras = Regra.getRegras(dataInicio, dataFim);
-    let horarios: object[] = [];
+    const horariosDisponiveis: Array<Horario> = [];
+    // let horarios: object[] = [];
     regras.forEach((value, index, array) => {
-      // const regra = value as Regra;
-      // const dia = DateHelper.parseString(regra.dia);
-      // const horario = new Horario(dia, []);
-      // horario.addHorariosPorRegra(regra);
-      // const horario = new HorarioModel(dia, ['']);
-      // if (horarios[dia] === undefined) horarios[dia] = [];
-      // if (horarios.day[dia] === undefined) horarios.day[dia] = [];
-      // horarios.day[dia].push(regra.horarios);
+      const regra = value as Regra;
+      const diaRegra: Date = regra.dia === undefined ? new Date() : regra.dia;
+      const dia = DateHelper.parseString(diaRegra);
+      const horario = new Horario(dia, []);
+      horario.addHorariosPorRegra(regra);
+      horariosDisponiveis.push(horario);
     });
-    return [];
+    return horariosDisponiveis;
   }
 
   public static getRegras(dataInicio: string, dataFim: string): Array<object> {

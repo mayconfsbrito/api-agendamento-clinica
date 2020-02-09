@@ -1,7 +1,7 @@
 import moment = require('moment');
 
 export class DateHelper {
-  public static getMomentDate(date: string): moment.Moment {
+  public static getMomentDate(date: string | Date): moment.Moment {
     return moment(date, 'DD-MM-YYYY');
   }
 
@@ -18,7 +18,10 @@ export class DateHelper {
   }
 
   public static parseString(date: Date): string {
-    return moment(date).format('DD-MM-YYYY');
+    if (this.getMomentDate(date).isValid()) {
+      return this.getMomentDate(date).format('DD-MM-YYYY');
+    }
+    return '';
   }
 
   public static getDate(date: string): Date {

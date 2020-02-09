@@ -14,18 +14,17 @@ class Regra extends index_1.AbstractEntity {
     }
     static getHorariosDisponiveis(dataInicio, dataFim) {
         const regras = Regra.getRegras(dataInicio, dataFim);
-        let horarios = [];
+        const horariosDisponiveis = [];
+        // let horarios: object[] = [];
         regras.forEach((value, index, array) => {
-            // const regra = value as Regra;
-            // const dia = DateHelper.parseString(regra.dia);
-            // const horario = new Horario(dia, []);
-            // horario.addHorariosPorRegra(regra);
-            // const horario = new HorarioModel(dia, ['']);
-            // if (horarios[dia] === undefined) horarios[dia] = [];
-            // if (horarios.day[dia] === undefined) horarios.day[dia] = [];
-            // horarios.day[dia].push(regra.horarios);
+            const regra = value;
+            const diaRegra = regra.dia === undefined ? new Date() : regra.dia;
+            const dia = DateHelper_1.DateHelper.parseString(diaRegra);
+            const horario = new index_1.Horario(dia, []);
+            horario.addHorariosPorRegra(regra);
+            horariosDisponiveis.push(horario);
         });
-        return [];
+        return horariosDisponiveis;
     }
     static getRegras(dataInicio, dataFim) {
         let data = index_1.DAO.getData();

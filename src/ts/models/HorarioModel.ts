@@ -1,6 +1,5 @@
 /* eslint-disable max-classes-per-file */
 import { Regra } from './index';
-import { DateHelper } from '../utils/DateHelper';
 
 class Intervals {
   constructor(public start: string, public end: string) {
