@@ -8,5 +8,8 @@ class AbstractEntity {
     delete() {
         index_1.DAO.delete(this);
     }
+    static getData() {
+        return index_1.DAO.getData();
+    }
 }
 exports.AbstractEntity = AbstractEntity;

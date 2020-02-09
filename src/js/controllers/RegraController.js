@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const models_1 = require("../models/");
 exports.getRegras = (req, res) => {
-    res.status(200).json({});
+    const data = models_1.Regra.getData();
+    res.status(200).json(data);
 };
 exports.createRegra = (req, res) => {
     try {
         const regra = new models_1.Regra(req.body);
-        console.log(regra);
         regra.insert();
         res.status(201).json(regra);
     }

@@ -1,13 +1,13 @@
 import { Regra } from '../models/';
 
 exports.getRegras = (req: any, res: any) => {
-  res.status(200).json({});
+  const data = Regra.getData();
+  res.status(200).json(data);
 };
 
 exports.createRegra = (req: any, res: any) => {
   try {
     const regra = new Regra(req.body);
-    console.log(regra);
     regra.insert();
     res.status(201).json(regra);
   } catch (err) {

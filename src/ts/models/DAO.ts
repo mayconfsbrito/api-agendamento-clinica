@@ -4,7 +4,7 @@ import * as lodash from 'lodash';
 const config = require('../../../config');
 
 export class DAO {
-  private static _filePath = `${__dirname}\\..\\..\\..\\data\\${config.dataFileName}`;
+  public static _filePath = `${__dirname}\\..\\..\\..\\data\\${config.dataFileName}`;
 
   public static insert(obj: object): void {
     const data = DAO.getData();

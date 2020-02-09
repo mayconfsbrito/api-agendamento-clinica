@@ -8,4 +8,8 @@ export class AbstractEntity {
   public delete(): void {
     DAO.delete(this);
   }
+
+  public static getData(): any {
+    return DAO.getData();
+  }
 }
