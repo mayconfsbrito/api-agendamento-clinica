@@ -15,8 +15,7 @@ class Regra extends index_1.AbstractEntity {
     static getHorariosDisponiveis(dataInicio, dataFim) {
         const regras = Regra.getRegras(dataInicio, dataFim);
         const horariosDisponiveis = [];
-        // let horarios: object[] = [];
-        regras.forEach((value, index, array) => {
+        regras.forEach(value => {
             const regra = value;
             const diaRegra = regra.dia === undefined ? new Date() : regra.dia;
             const dia = DateHelper_1.DateHelper.parseString(diaRegra);

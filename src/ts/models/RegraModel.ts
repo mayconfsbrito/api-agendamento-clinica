@@ -19,8 +19,7 @@ export class Regra extends AbstractEntity {
   ): Array<Horario> {
     const regras = Regra.getRegras(dataInicio, dataFim);
     const horariosDisponiveis: Array<Horario> = [];
-    // let horarios: object[] = [];
-    regras.forEach((value, index, array) => {
+    regras.forEach(value => {
       const regra = value as Regra;
       const diaRegra: Date = regra.dia === undefined ? new Date() : regra.dia;
       const dia = DateHelper.parseString(diaRegra);

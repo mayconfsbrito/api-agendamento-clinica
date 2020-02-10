@@ -20,5 +20,8 @@ class DateHelper {
     static getDate(date) {
         return new Date(DateHelper.getMomentDate(date).toDate());
     }
+    static isValid(date) {
+        return this.getMomentDate(date).isValid();
+    }
 }
 exports.DateHelper = DateHelper;

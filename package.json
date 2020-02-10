@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha -w -r ts-node/register test/*.ts src/ts/utils/*.ts src/ts/models/*.ts",
     "build": "rm -rf js/ && tsc -w",
-    "start": "set node_env=production && nodemon src/js/index.js",
+    "start:dev": "nodemon src/js/index.js",
     "start:prod": "set node_env=production && nodemon src/js/index.js",
     "tsc": "tsc -w"
   },
