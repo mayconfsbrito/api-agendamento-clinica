@@ -7,7 +7,8 @@ exports.getRegras = (req: any, res: any) => {
 
 exports.createRegra = (req: any, res: any) => {
   try {
-    const regra = new Regra(req.body);
+    const regra = new Regra();
+    regra.clone(req.body);
     regra.insert();
     res.status(201).json(regra);
   } catch (err) {
@@ -18,7 +19,8 @@ exports.createRegra = (req: any, res: any) => {
 
 exports.deleteRegra = (req: any, res: any) => {
   try {
-    const regra = new Regra(req.body);
+    const regra = new Regra();
+    regra.clone(req.body);
     regra.delete();
     res.status(200).json();
   } catch (err) {

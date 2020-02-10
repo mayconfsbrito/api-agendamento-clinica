@@ -12,6 +12,11 @@ class Regra extends index_1.AbstractEntity {
         this.dia = dia;
         this.horarios = horarios;
     }
+    clone(regra) {
+        this.diasSemana = regra.diasSemana;
+        this.dia = regra.dia;
+        this.horarios = regra.horarios;
+    }
     static getHorariosDisponiveis(dataInicio, dataFim) {
         const regras = Regra.getRegras(dataInicio, dataFim);
         const horariosDisponiveis = [];

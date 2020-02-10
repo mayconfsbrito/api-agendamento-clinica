@@ -1,5 +1,6 @@
 import { DAO, AbstractEntity, Horario } from './index';
 import { DateHelper } from '../utils/DateHelper';
+
 import moment = require('moment');
 
 export class Regra extends AbstractEntity {
@@ -12,6 +13,12 @@ export class Regra extends AbstractEntity {
     this.diasSemana = diasSemana;
     this.dia = dia;
     this.horarios = horarios;
+  }
+
+  public clone(regra: Regra): void {
+    this.diasSemana = regra.diasSemana;
+    this.dia = regra.dia;
+    this.horarios = regra.horarios;
   }
 
   public static getHorariosDisponiveis(
