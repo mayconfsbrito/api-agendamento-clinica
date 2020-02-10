@@ -38,10 +38,52 @@ describe('RegraModel', () => {
         '02-01-2020'
       );
       expect(result2).length(1);
-      // console.log(result1);
-      // result1.forEach((value, index, array) => {
-      //   console.log(value);
-      // });
+    });
+  });
+
+  describe('#isScheduled()', () => {
+    it('should have scheduled regras', () => {
+      const regra1 = new Regra();
+      regra1.setFromString(
+        '[{"diasSemana":null,"dia":"01-01-2020","horarios":["08:00", "09:00"]}]'
+      );
+      const regra2 = new Regra();
+      regra2.setFromString(
+        '[{"diasSemana":null,"dia":"02-01-2020","horarios":["13:30", "14:00"]}]'
+      );
+
+      expect(regra1.isScheduled()).to.equal(true);
+      expect(regra2.isScheduled()).to.equal(true);
+    });
+    it('should have not scheduled regras', () => {
+      const regra1 = new Regra();
+      regra1.setFromString(
+        '[{"diasSemana":null,"dia":"01-01-2020","horarios":["07:00", "07:59"]}]'
+      );
+      const regra2 = new Regra();
+      regra2.setFromString(
+        '[{"diasSemana":null,"dia":"03-01-2020","horarios":["08:00", "17:00"]}]'
+      );
+      expect(regra1.isScheduled()).to.equal(true);
+    });
+    it('should insert a new regra', () => {
+      const regra1 = new Regra();
+      const before = DAO.getData().length;
+      regra1.setFromString(
+        '[{"diasSemana":null,"dia":"10-01-2020","horarios":["08:00", "09:00"]}]'
+      );
+      regra1.insert();
+      const after = DAO.getData().length;
+      expect(before).to.lessThan(after);
+    });
+    it('should throw error by insert an already scheduled regra', () => {
+      const regra1 = new Regra();
+      regra1.setFromString(
+        '[{"diasSemana":null,"dia":"01-01-2020","horarios":["08:00", "09:00"]}]'
+      );
+      expect(() => {
+        regra1.insert();
+      }).to.throw(Error);
       DAO.dropData();
     });
   });
