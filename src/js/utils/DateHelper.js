@@ -3,6 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const moment = require("moment");
 class DateHelper {
     static getMomentDate(date) {
+        if (typeof date === `string` && date.match(/\d{2}:\d{2}/))
+            return moment(date, 'DD-MM-YYYY HH:mm');
         return moment(date, 'DD-MM-YYYY');
     }
     static isSameOrBefore(dateOne, dateTwo) {

@@ -1,17 +1,27 @@
 import moment = require('moment');
 
 export class DateHelper {
-  public static getMomentDate(date: string | Date): moment.Moment {
+  public static getMomentDate(
+    date: string | Date | moment.Moment
+  ): moment.Moment {
+    if (typeof date === `string` && date.match(/\d{2}:\d{2}/))
+      return moment(date, 'DD-MM-YYYY HH:mm');
     return moment(date, 'DD-MM-YYYY');
   }
 
-  public static isSameOrBefore(dateOne: string, dateTwo: string): boolean {
+  public static isSameOrBefore(
+    dateOne: string | Date | moment.Moment,
+    dateTwo: string | Date | moment.Moment
+  ): boolean {
     return DateHelper.getMomentDate(dateOne).isSameOrBefore(
       DateHelper.getMomentDate(dateTwo)
     );
   }
 
-  public static isSameOrAfter(dateOne: string, dateTwo: string): boolean {
+  public static isSameOrAfter(
+    dateOne: string | Date | moment.Moment,
+    dateTwo: string | Date | moment.Moment
+  ): boolean {
     return DateHelper.getMomentDate(dateOne).isSameOrAfter(
       DateHelper.getMomentDate(dateTwo)
     );
