@@ -14,7 +14,7 @@ exports.getHorariosDisponiveis = (req: any, res: any) => {
   }
 };
 
-exports.checkParamDates = (req: any, res: any, next, value) => {
+exports.checkParamDates = (req: any, res: any, next: any, value: any) => {
   if (!DateHelper.isValid(value))
     return next(new Error('Invalid dataInicio or dataFim parameters'));
   next();
