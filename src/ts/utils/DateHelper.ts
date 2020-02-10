@@ -27,4 +27,8 @@ export class DateHelper {
   public static getDate(date: string): Date {
     return new Date(DateHelper.getMomentDate(date).toDate());
   }
+
+  public static isValid(date: Date | string): boolean {
+    return this.getMomentDate(date).isValid();
+  }
 }
